@@ -24,7 +24,7 @@ glinternet.cv = function(X, Y, numLevels, nFolds=10, lambda=NULL, nLambda=50, la
   # helper for loss calculation
   compute_loss = function(y, yhat, family) {
     if (family == "gaussian") {
-      return (sum((y-yhat)^2)/(2*length(y)))
+      return (mean((y-yhat)^2))
     }
     yhat = sapply(yhat, function(x) min(max(1e-15, x), 1-1e-15))
     -(t(y)%*%log(yhat) + t(1-y)%*%log(1-yhat))/length(y)

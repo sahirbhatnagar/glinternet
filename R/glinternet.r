@@ -85,7 +85,7 @@ glinternet = function(X, Y, numLevels, lambda=NULL, nLambda=50, lambdaMinRatio=0
       activeSet[[i]] = solution$activeSet
       betahat[[i]] = solution$betahat
       res = solution$res
-      objValue[i] = solution$objValue
+      objValue[i] = if (length(solution$objValue)==0) objValue[i-1] else solution$objValue
       # check kkt conditions on the rest
       check = check_kkt(Xcat, Z, res, n, pCat, pCont, levels, candidates, activeSet[[i]], lambda[i], numCores)
       candidates$norms = check$norms

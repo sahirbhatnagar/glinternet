@@ -384,6 +384,7 @@ void optimize_step(int *restrict x, double *restrict z, const double *restrict y
     }
     if (loglikUpdated <= loglik + gradientTimesDelta + deltaTimesDelta/(2*step)) break;
     step *= factor;
+    if (step == 0) break; /* prevent infinite loop */
   }
   *stepsize = step;
   free(delta);
